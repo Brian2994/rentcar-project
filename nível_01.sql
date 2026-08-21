@@ -72,3 +72,22 @@ SELECT marca, modelo, ano, status
 FROM veiculos
 ORDER BY ano DESC
 LIMIT 3;
+
+-- Exercício 9 — DISTINCT
+-- O gerente pergunta:
+-- Quais são as marcas de veículos que a RentCar possui?
+
+SELECT DISTINCT marca FROM veiculos;
+
+-- Exercício 10 — DISTINCT + ORDER BY
+-- O gerente quer:
+-- Uma lista das marcas existentes na frota, sem repetição, em ordem alfabética.
+
+SELECT DISTINCT marca FROM veiculos ORDER BY marca;
+
+-- Exercício 11 — Comparações
+-- O gerente quer:
+-- Liste os veículos fabricados antes de 2024.
+-- Queremos retornar: 'marca' 'modelo' 'ano' 'status'
+
+SELECT marca, modelo, ano, status FROM veiculos WHERE ano < 2024;
