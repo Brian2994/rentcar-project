@@ -91,3 +91,58 @@ SELECT DISTINCT marca FROM veiculos ORDER BY marca;
 -- Queremos retornar: 'marca' 'modelo' 'ano' 'status'
 
 SELECT marca, modelo, ano, status FROM veiculos WHERE ano < 2024;
+
+-- Exercício 12 — AND
+-- Agora vamos aumentar um pouco a dificuldade.
+-- O gerente quer:
+-- Veículos da marca Toyota que estejam disponíveis.
+-- Temos duas condições: 1. marca deve ser Toyota 2. status deve ser disponível
+-- Queremos retornar: 'marca' 'modelo' 'ano' 'status'
+
+SELECT marca, modelo, ano, status
+FROM veiculos
+WHERE
+    marca = 'Toyota'
+    AND status = 'disponível';
+
+-- Exercício 13 — OR
+-- Agora vamos mudar a lógica.
+-- O gerente diz:
+-- Quero os veículos que sejam Toyota OU BMW.
+-- Queremos retornar: 'marca' 'modelo' 'ano' 'status'
+
+SELECT marca, modelo, ano, status
+FROM veiculos
+WHERE
+    marca = 'Toyota'
+    OR marca = 'BMW';
+
+-- Exercício 14 — AND + OR
+-- O gerente diz:
+-- Quero veículos que sejam Toyota ou BMW, mas que estejam disponíveis.
+-- Queremos retornar: 'marca' 'modelo' 'ano' 'status'
+
+SELECT marca, modelo, ano, status
+FROM veiculos
+WHERE (
+        marca = 'Toyota'
+        OR marca = 'BMW'
+    )
+    AND status = 'disponível';
+
+-- Exercício 15 — BETWEEN
+-- O gerente quer:
+-- Veículos fabricados entre 2023 e 2024, inclusive.
+-- Queremos retornar: 'marca' 'modelo' 'ano' 'status'
+
+SELECT marca, modelo, ano, status
+FROM veiculos
+WHERE ano BETWEEN 2023 AND 2024;
+
+-- Exercício 16 — IN
+-- O gerente diz:
+-- Quero os veículos das marcas Toyota, BMW ou Honda.
+-- Queremos retornar: 'marca' 'modelo' 'ano' 'status'
+
+SELECT marca, modelo, ano, status
+FROM veiculos
