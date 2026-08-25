@@ -146,3 +146,59 @@ WHERE ano BETWEEN 2023 AND 2024;
 
 SELECT marca, modelo, ano, status
 FROM veiculos
+WHERE marca IN ('Toyota', 'BMW', 'Honda');
+
+-- Exercício 17 — NOT IN
+-- O gerente quer:
+-- Todos os veículos que NÃO sejam Toyota, BMW ou Honda.
+-- Queremos retornar: 'marca' 'modelo' 'ano' 'status'
+
+SELECT marca, modelo, ano, status
+FROM veiculos
+WHERE marca NOT IN ('Toyota', 'BMW', 'Honda');
+
+-- Exercício 18 — LIKE
+-- O gerente quer:
+-- Encontrar todos os veículos cujo modelo começa com a letra C.
+-- Queremos retornar: 'marca' 'modelo' 'ano' 'status'
+
+SELECT marca, modelo, ano, status
+FROM veiculos
+WHERE modelo LIKE 'C%';
+
+-- Exercício 19 — LIKE + %
+-- Agora o gerente quer algo diferente:
+-- Encontre todos os modelos que contêm a letra 'o' em qualquer posição.
+-- Queremos retornar: 'marca' 'modelo' 'ano' 'status'
+
+SELECT marca, modelo, ano, status
+FROM veiculos
+WHERE modelo LIKE '%o%';
+
+-- Exercício 20 — ILIKE
+-- Encontre todos os modelos que contenham a letra o, independentemente de ser 'o' ou 'O'.
+-- Queremos retornar: 'marca' 'modelo' 'ano' 'status'
+
+SELECT marca, modelo, ano, status
+FROM veiculos
+WHERE modelo ILIKE '%o%';
+
+-- Exercício 21 — IS NULL
+-- Temos um aluguel ativo na nossa tabela alugueis:
+-- O gerente quer:
+-- Liste todos os aluguéis que ainda não possuem data de devolução.
+-- Queremos retornar: 'id' 'cliente_id' 'veiculo_id' 'retirada' 'devolucao' 'status'
+
+SELECT id, cliente_id, veiculo_id, retirada, devolucao, status
+FROM alugueis
+WHERE devolucao IS NULL;
+
+-- Exercício 22 — IS NOT NULL
+-- O gerente quer:
+-- Liste todos os aluguéis que já foram devolvidos.
+-- Se o veículo já foi devolvido, então devolucao não é NULL.
+-- Queremos retornar: 'id' 'cliente_id' 'veiculo_id' 'retirada' 'devolucao' 'status'
+
+SELECT id, cliente_id, veiculo_id, retirada, devolucao, status
+FROM alugueis
+WHERE devolucao IS NOT NULL;
