@@ -202,3 +202,31 @@ WHERE devolucao IS NULL;
 SELECT id, cliente_id, veiculo_id, retirada, devolucao, status
 FROM alugueis
 WHERE devolucao IS NOT NULL;
+
+-- Exercício 23
+-- O gerente pergunta:
+-- Quantos veículos existem cadastrados na RentCar?
+-- Escreva uma query que retorne a quantidade total de veículos cadastrados.
+
+SELECT COUNT(*) AS total_veiculos FROM veiculos;
+
+-- Exercício 24 — COUNT + WHERE
+-- Agora vamos transformar isso em uma pergunta de negócio.
+-- Quantos veículos estão atualmente disponíveis?
+
+SELECT COUNT(*) AS total_disponiveis
+FROM veiculos
+WHERE status = 'disponível';
+
+-- Exercício 25 — COUNT() + GROUP BY
+-- Imagine que o gerente pergunte:
+-- Quantos veículos existem em cada status?
+-- disponível           ?
+-- alugado              ?
+-- manutenção           ?
+-- Queremos retornar: status,  quantidade.
+
+SELECT status,
+COUNT(*) AS quantidade
+FROM veiculos
+GROUP BY status;
