@@ -230,3 +230,21 @@ SELECT status,
 COUNT(*) AS quantidade
 FROM veiculos
 GROUP BY status;
+
+-- Exercício 26 — GROUP BY + ORDER BY
+-- Agora o gerente quer:
+-- Mostre quantos veículos existem em cada status, ordenando do status com maior quantidade para o menor.
+-- Queremos retornar: status,  quantidade.
+
+SELECT status,
+COUNT(*) AS quantidade
+FROM veiculos
+GROUP BY status
+ORDER BY quantidade DESC;
+
+-- Exercício 27 — SUM()
+-- O gerente pergunta:
+-- Qual é o valor total de todos os pagamentos registrados?
+-- Tabela pagamentos
+
+SELECT SUM(valor) AS total_pagamentos FROM pagamentos;
