@@ -248,3 +248,11 @@ ORDER BY quantidade DESC;
 -- Tabela pagamentos
 
 SELECT SUM(valor) AS total_pagamentos FROM pagamentos;
+
+-- Exercício 28 — SUM() + WHERE
+-- Agora uma pergunta mais próxima de um relatório financeiro:
+-- Qual é o valor total dos pagamentos que estão com status pago?
+
+SELECT SUM(valor) AS total_pago
+FROM pagamentos
+WHERE status = 'pago';
