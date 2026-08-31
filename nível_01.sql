@@ -256,3 +256,35 @@ SELECT SUM(valor) AS total_pagamentos FROM pagamentos;
 SELECT SUM(valor) AS total_pago
 FROM pagamentos
 WHERE status = 'pago';
+
+-- Exercício 29 — AVG()
+-- O gerente pergunta:
+-- Qual é o valor médio dos pagamentos realizados?
+-- Tabela 'pagamentos' e calcular a média da coluna 'valor'.
+
+SELECT AVG(valor) AS media_pagamento FROM pagamentos;
+
+-- Exercício 30 — MIN() e MAX()
+-- O gerente quer saber duas coisas sobre os pagamentos:
+-- Qual foi o menor pagamento e qual foi o maior pagamento realizado?
+-- Tabela 'pagamentos' e coluna 'valor'. menor_pagamento | maior_pagamento
+
+SELECT
+    MIN(valor) AS menor_pagamento,
+    MAX(valor) AS maior_pagamento
+FROM pagamentos;
+
+-- Exercício 31 — Várias agregações
+-- Agora vamos juntar tudo.
+-- O gerente quer um pequeno resumo financeiro da RentCar:
+-- Quantidade de pagamentos, valor total, valor médio, menor pagamento e maior pagamento.
+-- Tabela 'pagamentos' e coluna 'valor'.
+-- quantidade_pagamentos, total_pagamentos, media_pagamento, menor_pagamento, maior_pagamento
+
+SELECT
+    COUNT(*) AS quantidade_pagamentos,
+    SUM(valor) AS total_pagamentos,
+    AVG(valor) AS media_pagamento,
+    MIN(valor) AS menor_pagamento,
+    MAX(valor) AS maior_pagamento
+FROM pagamentos;
