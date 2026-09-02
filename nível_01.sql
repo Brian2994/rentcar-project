@@ -288,3 +288,37 @@ SELECT
     MIN(valor) AS menor_pagamento,
     MAX(valor) AS maior_pagamento
 FROM pagamentos;
+
+-- Exercício 32 — GROUP BY + SUM()
+-- Agora vamos voltar ao GROUP BY, mas dessa vez com dinheiro.
+-- O gerente quer saber:
+-- Quanto foi pago em cada método de pagamento?
+-- Tabela 'pagamentos', coluna 'metodo' e 'valor'.
+
+SELECT metodo, SUM(valor) AS total FROM pagamentos GROUP BY metodo;
+
+-- Exercício 33 — GROUP BY + SUM() + ORDER BY
+-- O gerente quer:
+-- Quanto foi pago por cada método de pagamento, ordenado do método que movimentou mais dinheiro para o que movimentou menos.
+
+SELECT metodo, SUM(valor) AS total
+FROM pagamentos
+GROUP BY
+    metodo
+ORDER BY total DESC;
+
+-- Exercício 34 — Média por método
+-- O gerente quer saber:
+-- Qual é o valor médio dos pagamentos realizados em cada método de pagamento?
+-- Tabela 'pagamentos', esperado: metodo | media_pagamento
+
+SELECT metodo, AVG(valor) AS media_pagamento
+FROM pagamentos
+GROUP BY
+    metodo
+ORDER BY media_pagamento DESC;
+
+-- Exercício 35 — Quantidade + total por método
+-- O gerente quer saber, para cada método de pagamento:
+-- Quantos pagamentos foram realizados.
+-- Quanto foi movimentado no total.
