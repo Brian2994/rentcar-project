@@ -320,5 +320,25 @@ ORDER BY media_pagamento DESC;
 
 -- Exercício 35 — Quantidade + total por método
 -- O gerente quer saber, para cada método de pagamento:
--- Quantos pagamentos foram realizados.
--- Quanto foi movimentado no total.
+-- 1. Quantos pagamentos foram realizados.
+-- 2. Quanto foi movimentado no total.
+-- Tabela 'pagamentos', metodo | quantidade_pagamentos | total
+
+SELECT metodo,
+    COUNT(metodo) AS quantidade_pagamentos, -- COUNT(*) AS quantidade_pagamentos, (caso exista nulls)
+    SUM(valor) AS total
+FROM pagamentos
+GROUP BY
+    metodo
+ORDER BY total DESC;
+
+-- Exercício 36 — GROUP BY + HAVING
+-- O gerente quer:
+-- Mostrar somente os métodos de pagamento cujo total movimentado seja superior a R$ 1.000
+-- Tabela 'pagamentos', metodo | total
+
+SELECT metodo, SUM(valor) AS total
+FROM pagamentos
+GROUP BY
+    metodo
+HAVING SUM(valor) >= 1000;
