@@ -342,3 +342,9 @@ FROM pagamentos
 GROUP BY
     metodo
 HAVING SUM(valor) >= 1000;
+
+-- Exercício 37 — WHERE + GROUP BY + HAVING
+-- O gerente quer:
+-- Considerar somente pagamentos com status pago, agrupar por método de pagamento e mostrar apenas os métodos cujo total pago seja superior a R$ 1.000.
+-- Tabela 'pagamentos', metodo | total_pago
+
