@@ -348,3 +348,26 @@ HAVING SUM(valor) >= 1000;
 -- Considerar somente pagamentos com status pago, agrupar por método de pagamento e mostrar apenas os métodos cujo total pago seja superior a R$ 1.000.
 -- Tabela 'pagamentos', metodo | total_pago
 
+SELECT metodo, SUM(valor) AS total_pago
+FROM pagamentos
+WHERE
+    status = 'pago'
+GROUP BY
+    metodo
+HAVING
+    SUM(valor) > 1000;
+
+-- Exercício 38 — GROUP BY com relacionamento JOIN
+-- O gerente quer:
+-- Liste cada veículo junto com o nome da sua categoria.
+-- Tabela 'veiculos' e 'categorias', marca, modelo, ano, categoria
+-- veiculos = categoria_id | categorias = id, nome, diaria_base
+
+SELECT
+    veiculos.marca,
+    veiculos.modelo, 
+    veiculos.ano,
+    categorias.nome
+FROM veiculos
+JOIN categorias
+    ON veiculos.categoria_id = categorias.id;
