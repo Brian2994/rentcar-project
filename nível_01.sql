@@ -357,7 +357,7 @@ GROUP BY
 HAVING
     SUM(valor) > 1000;
 
--- Exercício 38 — GROUP BY com relacionamento JOIN
+-- Exercício 38 — GROUP BY com relacionamento INNER JOIN
 -- O gerente quer:
 -- Liste cada veículo junto com o nome da sua categoria.
 -- Tabela 'veiculos' e 'categorias', marca, modelo, ano, categoria
@@ -369,5 +369,36 @@ SELECT
     veiculos.ano,
     categorias.nome
 FROM veiculos
-JOIN categorias
-    ON veiculos.categoria_id = categorias.id;
+    INNER JOIN categorias ON veiculos.categoria_id = categorias.id;
+
+-- Exercício 39 — INNER JOIN + WHERE
+-- O gerente agora quer:
+-- Liste os veículos que pertencem à categoria "SUV".
+-- Tabela 'veiculos' e 'categorias', marca, modelo, ano, categoria
+
+SELECT
+    veiculos.marca,
+    veiculos.modelo, 
+    veiculos.ano,
+    categorias.nome
+FROM veiculos
+    INNER JOIN categorias ON veiculos.categoria_id = categorias.id
+WHERE
+    categorias.nome = 'SUV';
+
+-- Exercício 40 — INNER JOIN + WHERE + duas tabelas
+-- O gerente agora quer:
+-- Liste todos os veículos da categoria SUV que estão disponíveis para aluguel.
+-- Tabela 'veiculos' e 'categorias', marca, modelo, ano, categoria, status
+
+SELECT
+    veiculos.marca,
+    veiculos.modelo,
+    veiculos.ano,
+    categorias.nome AS categoria,
+    veiculos.status
+FROM veiculos
+    INNER JOIN categorias ON veiculos.categoria_id = categorias.id
+WHERE
+    categorias.nome = 'SUV'
+    AND veiculos.status = 'disponível';
