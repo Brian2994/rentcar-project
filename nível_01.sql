@@ -402,3 +402,36 @@ FROM veiculos
 WHERE
     categorias.nome = 'SUV'
     AND veiculos.status = 'disponível';
+
+-- Exercício 41 — JOIN entre 3 tabelas
+-- Queremos responder uma pergunta real da RentCar:
+-- Quais clientes possuem aluguéis e quais veículos eles alugaram?
+-- Tabelas 'clientes', 'alugueis' e 'veiculos', cliente, marca, modelo, data_retirada, status_aluguel
+
+SELECT
+    clientes.nome,
+    veiculos.marca,
+    veiculos.modelo,
+    alugueis.retirada,
+    alugueis.status
+FROM
+    clientes
+    INNER JOIN alugueis ON alugueis.cliente_id = clientes.id
+    INNER JOIN veiculos ON alugueis.veiculo_id = veiculos.id;
+
+-- Exercício 42 — JOIN + GROUP BY
+-- O gerente quer saber:
+-- Quantos aluguéis cada cliente já realizou?.
+-- Tabelas 'clientes', 'alugueis', cliente | quantidade_alugueis
+
+SELECT
+    clientes.nome,
+    COUNT(*) AS quantidade_alugueis
+FROM clientes
+INNER JOIN alugueis
+    ON alugueis.cliente_id = clientes.id
+GROUP BY clientes.nome;
+
+-- Exercício 43 — LEFT JOIN
+-- O gerente quer responder:
+-- Quantos aluguéis cada cliente possui, incluindo clientes que nunca fizeram nenhum aluguel?
