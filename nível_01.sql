@@ -435,3 +435,11 @@ GROUP BY clientes.nome;
 -- Exercício 43 — LEFT JOIN
 -- O gerente quer responder:
 -- Quantos aluguéis cada cliente possui, incluindo clientes que nunca fizeram nenhum aluguel?
+
+SELECT
+    clientes.nome,
+    COUNT(alugueis.id) AS quantidade_alugueis
+FROM clientes
+LEFT JOIN alugueis
+    ON alugueis.cliente_id = clientes.id
+GROUP BY clientes.nome;
