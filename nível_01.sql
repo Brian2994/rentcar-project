@@ -428,9 +428,9 @@ SELECT
     clientes.nome,
     COUNT(*) AS quantidade_alugueis
 FROM clientes
-INNER JOIN alugueis
-    ON alugueis.cliente_id = clientes.id
-GROUP BY clientes.nome;
+    INNER JOIN alugueis ON alugueis.cliente_id = clientes.id
+GROUP BY
+    clientes.nome;
 
 -- Exercício 43 — LEFT JOIN
 -- O gerente quer responder:
@@ -440,9 +440,9 @@ SELECT
     clientes.nome,
     COUNT(alugueis.id) AS quantidade_alugueis
 FROM clientes
-LEFT JOIN alugueis
-    ON alugueis.cliente_id = clientes.id
-GROUP BY clientes.nome;
+    LEFT JOIN alugueis ON alugueis.cliente_id = clientes.id
+GROUP BY
+    clientes.nome;
 
 -- Exercício 44 — LEFT JOIN + WHERE?
 -- O gerente pergunta:
@@ -451,7 +451,34 @@ GROUP BY clientes.nome;
 SELECT
     clientes.nome
 FROM clientes
-LEFT JOIN alugueis
-    ON alugueis.cliente_id = clientes.id
+    LEFT JOIN alugueis ON alugueis.cliente_id = clientes.id
 WHERE
     alugueis.id IS NULL;
+
+-- Exercício 45 — LEFT JOIN + IS NULL
+-- O gerente da RentCar pergunta:
+-- Quais veículos nunca foram alugados?
+-- Tabelas 'veiculos', 'alugueis', marca | modelo | ano
+
+SELECT
+    veiculos.marca,
+    veiculos.modelo,
+    veiculos.ano
+FROM veiculos
+    LEFT JOIN alugueis ON alugueis.veiculo_id = veiculos.id
+WHERE
+    alugueis.veiculo_id IS NULL;
+
+-- Exercício 46 — LEFT JOIN + GROUP BY + COUNT
+-- Quantas vezes cada veículo foi alugado, incluindo veículos que nunca foram alugados.
+-- Tabelas 'veiculos', 'alugueis', marca | modelo | quantidade_alugueis
+
+SELECT
+    veiculos.marca,
+    veiculos.modelo,
+    COUNT(alugueis.id) AS quantidade_alugueis
+FROM veiculos
+    LEFT JOIN alugueis ON alugueis.veiculo_id = veiculos.id
+GROUP BY
+    veiculos.marca,
+    veiculos.modelo;
