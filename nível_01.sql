@@ -443,3 +443,15 @@ FROM clientes
 LEFT JOIN alugueis
     ON alugueis.cliente_id = clientes.id
 GROUP BY clientes.nome;
+
+-- Exercício 44 — LEFT JOIN + WHERE?
+-- O gerente pergunta:
+-- Quais clientes ainda não fizeram nenhum aluguel?
+
+SELECT
+    clientes.nome
+FROM clientes
+LEFT JOIN alugueis
+    ON alugueis.cliente_id = clientes.id
+WHERE
+    alugueis.id IS NULL;
