@@ -482,3 +482,19 @@ FROM veiculos
 GROUP BY
     veiculos.marca,
     veiculos.modelo;
+
+-- Exercício 47 — LEFT JOIN + GROUP BY + HAVING
+-- O gerente quer:
+-- Mostrar somente os veículos que foram alugados pelo menos 2 vezes.
+
+SELECT
+    veiculos.marca,
+    veiculos.modelo,
+    COUNT(alugueis.id) AS quantidade_alugueis
+FROM veiculos
+    LEFT JOIN alugueis ON alugueis.veiculo_id = veiculos.id
+GROUP BY
+    veiculos.marca,
+    veiculos.modelo
+HAVING
+    COUNT(alugueis.id) >= 2;
