@@ -498,3 +498,17 @@ GROUP BY
     veiculos.modelo
 HAVING
     COUNT(alugueis.id) >= 2;
+
+-- Exercício 48 — INNER JOIN + SUM()
+-- O gerente da RentCar quer saber:
+-- Quanto foi arrecadado em pagamentos para cada cliente?
+
+SELECT
+    clientes.nome,
+    SUM(pagamentos.valor) AS total_pago
+FROM
+    clientes
+    INNER JOIN alugueis ON alugueis.cliente_id = clientes.id
+    INNER JOIN pagamentos ON pagamentos.aluguel_id = alugueis.id
+GROUP BY
+    clientes.nome;
