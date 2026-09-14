@@ -529,3 +529,28 @@ WHERE
     pagamentos.status = 'pago'
 GROUP BY
     clientes.nome;
+
+-- Exercício 50 — RIGHT JOIN
+-- O gerente quer:
+-- Listar todas as categorias, mesmo que alguma categoria não tenha nenhum veículo cadastrado.
+-- Tabelas 'veiculos', 'categorias', categoria | marca | modelo
+
+SELECT
+    categorias.nome,
+    veiculos.marca,
+    veiculos.modelo
+FROM veiculos
+    RIGHT JOIN categorias ON veiculos.categoria_id = categorias.id;
+
+-- Exercício 51 — RIGHT JOIN + filtro
+-- O gerente quer:
+-- Listar todas as categorias, mas mostrar apenas as categorias que possuem veículos disponíveis.
+-- Tabelas 'veiculos', 'categorias', categoria | marca | modelo
+
+SELECT
+    categorias.nome,
+    veiculos.marca,
+    veiculos.modelo
+FROM veiculos
+    RIGHT JOIN categorias ON veiculos.categoria_id = categorias.id
+WHERE veiculos.status = 'disponível';
