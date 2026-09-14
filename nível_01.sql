@@ -512,3 +512,20 @@ FROM
     INNER JOIN pagamentos ON pagamentos.aluguel_id = alugueis.id
 GROUP BY
     clientes.nome;
+
+
+-- Exercício 49 — INNER JOIN + SUM() + WHERE
+-- O gerente quer:
+-- Quanto cada cliente já pagou somente em pagamentos com status pago?
+
+SELECT
+    clientes.nome,
+    SUM(pagamentos.valor) AS total_pago
+FROM
+    clientes
+    INNER JOIN alugueis ON alugueis.cliente_id = clientes.id
+    INNER JOIN pagamentos ON pagamentos.aluguel_id = alugueis.id
+WHERE
+    pagamentos.status = 'pago'
+GROUP BY
+    clientes.nome;
