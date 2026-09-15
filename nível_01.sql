@@ -554,3 +554,30 @@ SELECT
 FROM veiculos
     RIGHT JOIN categorias ON veiculos.categoria_id = categorias.id
 WHERE veiculos.status = 'disponível';
+
+-- Exercício 52 — RIGHT JOIN + agregação
+-- Agora vamos usar RIGHT JOIN com algo que você já domina: COUNT() + GROUP BY.
+-- O gerente quer saber:
+-- Quantos veículos existem em cada categoria, incluindo categorias que possuem zero veículos.
+
+SELECT
+    categorias.nome,
+    COUNT(veiculos.id) AS quantidade_veiculos
+FROM veiculos
+    RIGHT JOIN categorias ON veiculos.categoria_id = categorias.id
+GROUP BY
+    categorias.nome;
+
+-- Exercício 53 — RIGHT JOIN + HAVING
+-- O gerente quer:
+-- Listar somente as categorias que possuem pelo menos 2 veículos.
+
+SELECT
+    categorias.nome,
+    COUNT(veiculos.id) AS quantidade_veiculos
+FROM veiculos
+    RIGHT JOIN categorias ON veiculos.categoria_id = categorias.id
+GROUP BY
+    categorias.nome
+HAVING
+    COUNT(veiculos.id) >= 2;
