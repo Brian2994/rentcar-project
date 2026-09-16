@@ -573,11 +573,23 @@ GROUP BY
 -- Listar somente as categorias que possuem pelo menos 2 veículos.
 
 SELECT
-    categorias.nome,
-    COUNT(veiculos.id) AS quantidade_veiculos
+    categorias.nome
 FROM veiculos
     RIGHT JOIN categorias ON veiculos.categoria_id = categorias.id
 GROUP BY
     categorias.nome
 HAVING
     COUNT(veiculos.id) >= 2;
+
+-- Exercício 54 — vamos fazer uma variação importante
+-- Situação:
+-- O gerente quer listar todas as categorias e a quantidade de veículos disponíveis em cada uma, incluindo categorias que tenham zero veículos disponíveis.
+
+SELECT
+    categorias.nome,
+    COUNT(veiculos.id) AS veiculos_disponiveis
+FROM veiculos
+    RIGHT JOIN categorias ON veiculos.categoria_id = categorias.id
+    AND veiculos.status = 'disponível'
+GROUP BY
+    categorias.nome;
