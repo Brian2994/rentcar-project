@@ -593,3 +593,15 @@ FROM veiculos
     AND veiculos.status = 'disponível'
 GROUP BY
     categorias.nome;
+
+-- Exercício 55 — FULL OUTER JOIN
+-- O gerente quer fazer uma análise entre:
+-- E quer listar todos os clientes e todos os aluguéis, mesmo quando não existir correspondência.
+-- Tabelas 'clientes' e 'alugueis', cliente | retirada | status
+
+SELECT
+    clientes.nome AS cliente,
+    alugueis.retirada,
+    alugueis.status
+FROM clientes
+    FULL OUTER JOIN alugueis ON alugueis.cliente_id = clientes.id;
