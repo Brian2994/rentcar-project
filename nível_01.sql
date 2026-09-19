@@ -605,3 +605,14 @@ SELECT
     alugueis.status
 FROM clientes
     FULL OUTER JOIN alugueis ON alugueis.cliente_id = clientes.id;
+
+-- Exercício 56 — FULL OUTER JOIN
+-- O gerente quer descobrir:
+-- Quais clientes não possuem nenhum aluguel?
+
+SELECT
+    clientes.nome AS cliente
+FROM clientes
+    FULL OUTER JOIN alugueis ON alugueis.cliente_id = clientes.id
+WHERE
+    alugueis.id IS NULL;
