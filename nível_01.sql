@@ -616,3 +616,17 @@ FROM clientes
     FULL OUTER JOIN alugueis ON alugueis.cliente_id = clientes.id
 WHERE
     alugueis.id IS NULL;
+
+-- Exercício 57 — agora o contrário
+-- Agora queremos descobrir:
+-- Quais aluguéis não possuem um cliente correspondente?
+-- Tabelas 'clientes' e 'alugueis', aluguel_id | retirada | status
+
+SELECT
+    alugueis.id AS aluguel_id,
+    alugueis.retirada,
+    alugueis.status
+FROM clientes
+    FULL OUTER JOIN alugueis ON alugueis.cliente_id = clientes.id
+WHERE
+    clientes.id IS NULL;
