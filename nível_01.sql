@@ -617,7 +617,7 @@ FROM clientes
 WHERE
     alugueis.id IS NULL;
 
--- Exercício 57 — agora o contrário
+-- Exercício 57 — FULL OUTER JOIN
 -- Agora queremos descobrir:
 -- Quais aluguéis não possuem um cliente correspondente?
 -- Tabelas 'clientes' e 'alugueis', aluguel_id | retirada | status
@@ -630,3 +630,17 @@ FROM clientes
     FULL OUTER JOIN alugueis ON alugueis.cliente_id = clientes.id
 WHERE
     clientes.id IS NULL;
+
+-- Exercício 58 — agora vamos combinar os dois lados
+-- Liste todos os registros que não possuem correspondência entre clientes e alugueis.
+-- Tabelas 'clientes' e 'alugueis', cliente | aluguel_id | retirada
+
+SELECT
+    clientes.nome AS cliente,
+    alugueis.id AS aluguel_id,
+    alugueis.retirada
+FROM clientes
+    FULL OUTER JOIN alugueis ON alugueis.cliente_id = clientes.id
+WHERE
+    clientes.id IS NULL
+    OR alugueis.id IS NULL;
