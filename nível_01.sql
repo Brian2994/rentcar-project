@@ -631,7 +631,7 @@ FROM clientes
 WHERE
     clientes.id IS NULL;
 
--- Exercício 58 — agora vamos combinar os dois lados
+-- Exercício 58 — FULL OUTER JOIN
 -- Liste todos os registros que não possuem correspondência entre clientes e alugueis.
 -- Tabelas 'clientes' e 'alugueis', cliente | aluguel_id | retirada
 
@@ -644,3 +644,16 @@ FROM clientes
 WHERE
     clientes.id IS NULL
     OR alugueis.id IS NULL;
+
+-- Exercício 59 — FULL OUTER JOIN
+-- O gerente quer:
+-- Listar todas as categorias e a quantidade de veículos disponíveis em cada categoria, incluindo categorias com zero veículos disponíveis.
+
+SELECT
+    categorias.nome,
+    COUNT(veiculos.id) AS veiculos_disponiveis
+FROM categorias
+    LEFT JOIN veiculos ON categorias.id = veiculos.categoria_id
+    AND veiculos.status = 'disponível'
+GROUP BY
+    categorias.nome;
