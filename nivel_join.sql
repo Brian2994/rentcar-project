@@ -24,3 +24,15 @@ SELECT
 FROM clientes_join
     LEFT JOIN pedidos_join
     ON clientes_join.id = pedidos_join.cliente_id;
+
+-- Exercício 3 — RIGHT JOIN
+-- Todos os pedidos, mesmo aqueles que não possuem um cliente correspondente.
+-- cliente | produto | valor
+
+SELECT
+    clientes_join.nome AS cliente,
+    pedidos_join.produto,
+    pedidos_join.valor
+FROM clientes_join
+    RIGHT JOIN pedidos_join
+    ON clientes_join.id = pedidos_join.cliente_id;
