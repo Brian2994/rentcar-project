@@ -36,3 +36,15 @@ SELECT
 FROM clientes_join
     RIGHT JOIN pedidos_join
     ON clientes_join.id = pedidos_join.cliente_id;
+
+-- Exercício 4 — FULL OUTER JOIN
+-- Quero todos os clientes e todos os pedidos, independentemente de existir correspondência.
+-- cliente | produto | valor
+
+SELECT
+    clientes_join.nome AS cliente,
+    pedidos_join.produto,
+    pedidos_join.valor
+FROM clientes_join
+    FULL OUTER JOIN pedidos_join
+    ON clientes_join.id = pedidos_join.cliente_id;
