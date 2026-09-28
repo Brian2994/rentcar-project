@@ -48,3 +48,14 @@ SELECT
 FROM clientes_join
     FULL OUTER JOIN pedidos_join
     ON clientes_join.id = pedidos_join.cliente_id;
+
+-- Exercício 5 — FULL OUTER + IS NULL
+-- Quais clientes não possuem nenhum pedido?
+
+SELECT
+    clientes_join.nome AS cliente
+FROM clientes_join
+    FULL OUTER JOIN pedidos_join
+    ON clientes_join.id = pedidos_join.cliente_id
+WHERE
+    pedidos_join.id IS NULL;
