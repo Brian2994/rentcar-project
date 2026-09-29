@@ -59,3 +59,16 @@ FROM clientes_join
     ON clientes_join.id = pedidos_join.cliente_id
 WHERE
     pedidos_join.id IS NULL;
+
+-- Exercício 6 — agora vamos para o outro lado
+-- Quais pedidos não possuem um cliente correspondente?
+-- produto | valor
+
+SELECT
+    pedidos_join.produto,
+    pedidos_join.valor
+FROM clientes_join
+FULL OUTER JOIN pedidos_join
+    ON clientes_join.id = pedidos_join.cliente_id
+WHERE
+    clientes_join.id IS NULL;
