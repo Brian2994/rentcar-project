@@ -60,7 +60,7 @@ FROM clientes_join
 WHERE
     pedidos_join.id IS NULL;
 
--- Exercício 6 — agora vamos para o outro lado
+-- Exercício 6 — FULL OUTER JOIN
 -- Quais pedidos não possuem um cliente correspondente?
 -- produto | valor
 
@@ -71,4 +71,20 @@ FROM clientes_join
 FULL OUTER JOIN pedidos_join
     ON clientes_join.id = pedidos_join.cliente_id
 WHERE
+    clientes_join.id IS NULL;
+
+-- Exercício 7 — FULL OUTER JOIN
+-- Quais clientes não possuem pedidos OU quais pedidos não possuem clientes?
+-- cliente | produto | valor
+
+SELECT
+    clientes_join.nome AS cliente,
+    pedidos_join.produto,
+    pedidos_join.valor
+FROM clientes_join
+FULL OUTER JOIN pedidos_join
+    ON clientes_join.id = pedidos_join.cliente_id
+WHERE
+    pedidos_join.id IS NULL
+    OR
     clientes_join.id IS NULL;
