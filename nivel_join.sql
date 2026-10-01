@@ -82,9 +82,21 @@ SELECT
     pedidos_join.produto,
     pedidos_join.valor
 FROM clientes_join
-FULL OUTER JOIN pedidos_join
+    FULL OUTER JOIN pedidos_join
     ON clientes_join.id = pedidos_join.cliente_id
 WHERE
     pedidos_join.id IS NULL
     OR
     clientes_join.id IS NULL;
+
+-- Exercício 8 — LEFT JOIN
+-- Listar todos os clientes e mostrar quantos pedidos cada um possui.
+-- cliente | quantidade_pedidos
+
+SELECT
+    clientes_join.nome AS cliente,
+    COUNT(pedidos_join.produto) AS quantidade_pedidos
+FROM clientes_join
+LEFT JOIN pedidos_join
+ON clientes_join.id = pedidos_join.cliente_id
+GROUP BY clientes_join.nome;
