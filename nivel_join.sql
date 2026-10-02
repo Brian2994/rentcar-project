@@ -100,3 +100,15 @@ FROM clientes_join
 LEFT JOIN pedidos_join
 ON clientes_join.id = pedidos_join.cliente_id
 GROUP BY clientes_join.nome;
+
+-- Exercício 9 — LEFT JOIN + HAVING
+-- Quais clientes possuem pelo menos 2 pedidos?
+
+SELECT
+    clientes_join.nome AS cliente,
+    COUNT(pedidos_join.produto) AS quantidade_pedidos
+FROM clientes_join
+LEFT JOIN pedidos_join
+ON clientes_join.id = pedidos_join.cliente_id
+GROUP BY clientes_join.nome
+HAVING COUNT(pedidos_join.produto) >= 2;
