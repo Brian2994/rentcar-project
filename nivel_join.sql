@@ -97,9 +97,10 @@ SELECT
     clientes_join.nome AS cliente,
     COUNT(pedidos_join.produto) AS quantidade_pedidos
 FROM clientes_join
-LEFT JOIN pedidos_join
-ON clientes_join.id = pedidos_join.cliente_id
-GROUP BY clientes_join.nome;
+    LEFT JOIN pedidos_join
+    ON clientes_join.id = pedidos_join.cliente_id
+GROUP BY
+    clientes_join.nome;
 
 -- Exercício 9 — LEFT JOIN + HAVING
 -- Quais clientes possuem pelo menos 2 pedidos?
@@ -108,7 +109,22 @@ SELECT
     clientes_join.nome AS cliente,
     COUNT(pedidos_join.produto) AS quantidade_pedidos
 FROM clientes_join
-LEFT JOIN pedidos_join
-ON clientes_join.id = pedidos_join.cliente_id
-GROUP BY clientes_join.nome
-HAVING COUNT(pedidos_join.produto) >= 2;
+    LEFT JOIN pedidos_join
+    ON clientes_join.id = pedidos_join.cliente_id
+GROUP BY
+    clientes_join.nome
+HAVING
+    COUNT(pedidos_join.produto) >= 2;
+
+-- Exercício 10 — LEFT JOIN + condição no ON
+-- Todos os clientes + quantidade de pedidos acima de R$ 200.
+
+SELECT
+    clientes_join.nome AS cliente,
+    COUNT(pedidos_join.id) AS pedidos_acima_200
+FROM clientes_join
+    LEFT JOIN pedidos_join
+    ON clientes_join.id = pedidos_join.cliente_id
+    AND pedidos_join.valor > 200
+GROUP BY
+    clientes_join.nome;
