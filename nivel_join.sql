@@ -128,3 +128,15 @@ FROM clientes_join
     AND pedidos_join.valor > 200
 GROUP BY
     clientes_join.nome;
+
+-- Exercício 11 — WHERE
+-- Mostre somente clientes que possuem pelo menos um pedido acima de R$ 200.
+
+SELECT
+    clientes_join.nome AS cliente,
+    pedidos_join.produto,
+    pedidos_join.valor
+FROM clientes_join
+    LEFT JOIN pedidos_join
+    ON clientes_join.id = pedidos_join.cliente_id
+WHERE pedidos_join.valor > 200;
