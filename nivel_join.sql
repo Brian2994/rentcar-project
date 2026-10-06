@@ -140,3 +140,14 @@ FROM clientes_join
     LEFT JOIN pedidos_join
     ON clientes_join.id = pedidos_join.cliente_id
 WHERE pedidos_join.valor > 200;
+
+-- Exercício 12 — RIGHT JOIN
+-- Liste todos os pedidos e, quando existir, mostre o nome do cliente.
+
+SELECT
+    clientes_join.nome AS cliente,
+    pedidos_join.produto,
+    pedidos_join.valor
+FROM clientes_join
+    RIGHT JOIN pedidos_join
+    ON clientes_join.id = pedidos_join.cliente_id;
