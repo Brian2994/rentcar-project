@@ -151,3 +151,15 @@ SELECT
 FROM clientes_join
     RIGHT JOIN pedidos_join
     ON clientes_join.id = pedidos_join.cliente_id;
+
+-- Exercício 13 — RIGHT JOIN + IS NULL
+-- Quais pedidos não possuem um cliente correspondente?
+-- produto | valor
+
+SELECT
+    pedidos_join.produto,
+    pedidos_join.valor
+FROM clientes_join
+    RIGHT JOIN pedidos_join
+    ON clientes_join.id = pedidos_join.cliente_id
+WHERE clientes_join.id IS NULL;
